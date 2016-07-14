@@ -17,7 +17,12 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Projections;
 import com.abhi.edu.mongodb.util.JSONUtil;
-
+/**
+ * 
+ * MongoDB FIND and PROJECTION
+ * @author abhishekkhare
+ *
+ */
 public class FindWithFilterAndProjectionTest {
 
 	public static void main(String[] args) {

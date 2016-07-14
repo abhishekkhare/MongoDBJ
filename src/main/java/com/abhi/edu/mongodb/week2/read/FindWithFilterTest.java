@@ -15,7 +15,7 @@ import com.abhi.edu.mongodb.util.JSONUtil;
 
 
 /**
- * Eamples for AND,OR,EQUAL,GREATER THAN,GREATER THAN and EQUAL, LESS THAN, LESS THAN and EQUAL,NOT EQUAL,IN and NIN.
+ * Eamples for FIND WITH AND,OR,EQUAL,GREATER THAN,GREATER THAN and EQUAL, LESS THAN, LESS THAN and EQUAL,NOT EQUAL,IN and NIN.
  * @author abhishekkhare
  *
  */
