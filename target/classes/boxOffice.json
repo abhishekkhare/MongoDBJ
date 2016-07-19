@@ -1,0 +1,3 @@
+{"_id":{"$oid":"578825e368fd569637cc3a43"},"boxOffice":[{"country":"USA","revenue":41.3},{"country":"Australia","revenue":2.9},{"country":"UK","revenue":10.1},{"country":"Germany","revenue":4.3},{"country":"France","revenue":3.5}]}
+{"_id":{"$oid":"578827d668fd569637cc3a44"},"boxOffice":[{"country":"USA","revenue":51.3},{"country":"Australia","revenue":3.9},{"country":"UK","revenue":11.1},{"country":"Germany","revenue":5.3},{"country":"France","revenue":4.5}]}
+{"_id":{"$oid":"578827dd68fd569637cc3a45"},"boxOffice":[{"country":"USA","revenue":31.3},{"country":"Australia","revenue":1.9},{"country":"UK","revenue":9.1},{"country":"Germany","revenue":2.3},{"country":"France","revenue":2.5}]}
