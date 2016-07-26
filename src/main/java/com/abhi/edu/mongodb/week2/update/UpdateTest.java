@@ -147,6 +147,7 @@ public class UpdateTest {
 			UpdateResult result = collection.updateOne(filter, update);
 			System.out.println("Max:" + result.wasAcknowledged());
 		}
+
 	}
 
 }

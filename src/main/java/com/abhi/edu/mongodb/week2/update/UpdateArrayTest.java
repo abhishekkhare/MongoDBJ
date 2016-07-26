@@ -1,12 +1,15 @@
 package com.abhi.edu.mongodb.week2.update;
 
 import static com.mongodb.client.model.Filters.*;
+
 import static com.mongodb.client.model.Updates.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
@@ -15,10 +18,11 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
+
 /**
  * 
- * @author abhishekkhare This class uses the MovieDetails collection and
- *         boxOffice collection, the json for the same can be found in
+ * @author abhishekkhare This class uses the MovieDetails collection,
+ *         boxOffice collection and fruitVegetable, the json for the same can be found in
  *         resources.
  *         
  *         mongoimport --db m101 --collection movieDetails --file contacts.json
@@ -30,8 +34,10 @@ public class UpdateArrayTest {
 	public static void main(String[] args) {
 		MongoClient client = new MongoClient();
 		MongoDatabase db = client.getDatabase("m101");
+		MongoDatabase db1 = client.getDatabase("test");
 		MongoCollection<Document> collection = db.getCollection("movieDetails");
-		MongoCollection<Document> boxOffice = db.getCollection("boxOffice");
+		//MongoCollection<Document> boxOffice = db.getCollection("boxOffice");
+		MongoCollection<Document> fruitVeg = db1.getCollection("fruitVeg");
 		
 		/**
 		 * db.movieDetails.updateOne({_id:ObjectId("569190cd24de1e0ce2dfcd61"), actors:"Jonathan Frakes"},{$set:{"actors.$":"Abhishek Khare"}})
@@ -76,6 +82,46 @@ public class UpdateArrayTest {
 				JSONUtil.printJson(document);
 			}	
 		}
+		
+		/**
+		 * Query:
+		 * db.fruitVeg.update({ },{ $pull: { fruits: { $in: [ "apples", "oranges" ] }, vegetables: "carrots" } },{ multi: true })
+		 */
+		{
+			Bson filter = new Bson() {
+				
+				public <TDocument> BsonDocument toBsonDocument(Class<TDocument> documentClass, CodecRegistry codecRegistry) {
+					return new BsonDocument();
+				}
+			};
+			Bson filter1 = in("fruits", "apples","oranges");
+			Bson update = pullByFilter(filter1);
+			fruitVeg.updateMany(filter, update);
+			
+			update = pull("vegetables", "carrots");
+			fruitVeg.updateMany(filter, update);
+		}
+		
+		/**
+		 * Query::
+		 * db.fruitVeg.update({ },{ $pullAll: { fruits: [ "plums", "bananas" ] , vegetables: ["zucchini"] } },{ multi: true })
+		 */
+		
+		Bson filter = new Bson() {
+			
+			public <TDocument> BsonDocument toBsonDocument(Class<TDocument> documentClass, CodecRegistry codecRegistry) {
+				return new BsonDocument();
+			}
+		};
+		List<String> fruitList = new ArrayList<String>();
+		fruitList.add("plums");
+		fruitList.add("bananas");
+		Bson update = pullAll("fruits", fruitList);
+		fruitVeg.updateMany(filter, update);
+		List<String> vegList = new ArrayList<String>();
+		vegList.add("zucchini");
+		update = pullAll("vegetables", vegList);
+		fruitVeg.updateMany(filter, update);
 		
 		client.close();
 		System.out.println("Done");
