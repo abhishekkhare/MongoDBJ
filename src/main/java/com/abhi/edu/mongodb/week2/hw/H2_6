@@ -1,0 +1,4 @@
+//Check the output
+db.movieDetails.find({"countries.1":"Sweden"},{countries:1,_id:0,title:1}).pretty() 
+//Solution
+db.movieDetails.find({"countries.1":"Sweden"}).count()

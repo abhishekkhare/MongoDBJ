@@ -1,0 +1,3 @@
+db.movieDetails.aggregate([{$sort:{year:1,runtime:-1}},runtimeRange:{$and:[{$gt:["$runtime":100]},{$lt:[$runtime:115]}]}]).pretty()
+
+db.movieDetails.aggregate([{$project:{_id:0,year: 1,runtime: 1,runtimeRange: { $and: [ { $gt: [ "$runtime", 100 ] }, { $lt: [ "$runtime", 250 ] } ] }}}])
