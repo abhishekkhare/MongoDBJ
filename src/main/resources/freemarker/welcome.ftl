@@ -19,7 +19,7 @@
 <a href="/logout">Logout</a>
 </li>
 <li>
-Create a New Post (not yet implemented)
+<a href="/newpost">Create a New Post</a>
 </li>
 
 
