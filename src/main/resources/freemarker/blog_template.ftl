@@ -9,6 +9,8 @@
     Welcome ${username} <a href="/logout">Logout</a> | <a href="/newpost">New Post</a>
 
     <p>
+<#else>
+    Welcome guest <a href="/signup"> Sign up </a> | <a href="/login">Log in</a>
 </#if>
 
 <h1>My Blog</h1>
@@ -32,7 +34,7 @@
         <em>Filed Under</em>:
         <#if post["tags"]??>
             <#list post["tags"] as tag>
-                 ${tag}
+                <a href="/tag/${tag}">${tag}</a>
             </#list>
         </#if>
 
