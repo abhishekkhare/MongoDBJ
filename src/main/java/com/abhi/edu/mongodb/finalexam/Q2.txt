@@ -1,0 +1,20 @@
+Please use the Enron dataset you imported for the previous problem. For this question you will use the aggregation framework to figure out pairs of people that tend to communicate a lot. To do this, you will need to unwind the To list for each message.
+
+This problem is a little tricky because a recipient may appear more than once in the To list for a message. You will need to fix that in a stage of the aggregation before doing your grouping and counting of (sender, recipient) pairs.
+
+Which pair of people have the greatest number of messages in the dataset?
+
+
+******************************************************************************************************************************************
+db.messages.aggregate([{"$unwind" : "$headers.To"},{"$group" : {"_id" : {"_id" : "$_id","from" : "$headers.From"},"to" : {"$addToSet" : "$headers.To"}}},{"$unwind" : "$to"},{"$group" : {"_id" : {"from" : "$_id.from","to" : "$to"},"count_msg" : {"$sum" : 1}}},{ "$sort" : {"count_msg" : -1} },{ "$limit" : 5 }])
+
+Answer:
+{ "_id" : { "from" : "susan.mara@enron.com", "to" : "jeff.dasovich@enron.com" }, "count_msg" : 750 }
+{ "_id" : { "from" : "soblander@carrfut.com", "to" : "soblander@carrfut.com" }, "count_msg" : 679 }
+{ "_id" : { "from" : "susan.mara@enron.com", "to" : "james.steffes@enron.com" }, "count_msg" : 646 }
+{ "_id" : { "from" : "susan.mara@enron.com", "to" : "richard.shapiro@enron.com" }, "count_msg" : 616 }
+{ "_id" : { "from" : "evelyn.metoyer@enron.com", "to" : "kate.symes@enron.com" }, "count_msg" : 567 }
+
+
+{ "_id" : { "from" : "susan.mara@enron.com", "to" : "jeff.dasovich@enron.com" }, "count_msg" : 750 }
+******************************************************************************************************************************************
