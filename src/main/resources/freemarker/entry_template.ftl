@@ -35,6 +35,11 @@ ${post["body"]}
     </#if>
     <#if (numComments > 0)>
         <#list 0 .. (numComments -1) as i>
+            <form action="/like" method="POST">
+                <input type="hidden" name="permalink", value="${post["permalink"]}">
+                <input type="hidden" name="comment_ordinal", value="${i}">
+                Author: ${post["comments"][i]["author"]}<br>
+                Likes: ${post["comments"][i]["num_likes"]} <input type="submit" value="Like"></form>
             <br>
             ${post["comments"][i]["body"]}<br>
             <hr>
