@@ -1,0 +1,8 @@
+6.3: Which of the following statements are true about choosing and using a shard key?
+************************************************************************************************
+1. The shard key must be unique
+2. There must be an index on the collection that starts with the shard key- CORRECT
+3. MongoDB cannot enforce unique indexes on a sharded collection other than the shard key itself, 
+or indexes prefixed by the shard key- CORRECT
+4. Any update that does not include the shard key will be sent to all shards- CORRECT
+5. You can change the shard key on a collection if you desire
